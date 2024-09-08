@@ -10,6 +10,17 @@ from src.backup_tools.backup_checker import (
 )
 from src.generator.generator import init_config
 
+BACKUP_NEVER_PERFORMED_MESSAGE = "You have never performed a backup. \
+    Please make one as soon as possible."
+
+NO_BACKUP_NEEDED_MESSAGE = "No backup needed you're all good and safe."
+
+NO_CONFIG_MESSAGE = "No configuration file found. \
+    Please create one with the init command."
+
+CONFIG_ERROR_MESSAGE = "An error occured during configuration loading. \
+    Please check and fix your configuration file."
+
 
 @click.group()
 def cli():
@@ -39,24 +50,22 @@ def check():
             age = compute_last_backup_age_in_days(config)
 
             if age is None:
-                click.echo(
-                    """You have never performed a backup.
-                           Please make one as soon as possible."""
-                )
+                click.echo(BACKUP_NEVER_PERFORMED_MESSAGE)
                 return
 
             click.echo(
-                f"""Your last backup was done {age} days ago.
-                       Please make a new one as soon as possible."""
+                f"Your last backup was done {age} days ago. \
+                Please make a new one as soon as possible."
             )
             return
 
-        click.echo("No backup needed you're all good and safe.")
+        click.echo(NO_BACKUP_NEEDED_MESSAGE)
     except IncorrectBackupConfig:
-        click.echo(
-            """An error occured during configuration loading.
-            Please check and fix your configuration file."""
-        )
+        click.echo(CONFIG_ERROR_MESSAGE)
+        exit(1)
+    except FileNotFoundError:
+        click.echo(NO_CONFIG_MESSAGE)
+        exit(1)
 
 
 if __name__ == "__main__":
