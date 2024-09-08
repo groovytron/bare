@@ -1,0 +1,3 @@
+backintime --config /mnt/veracrypt1/backups/backintime/xps15-7590/julien/home-backup/20240907-110113-409/config --profile 'Main profile' backup
+
+backintime --config ~/.config/backintime/config --profile 'Main profile' backup
