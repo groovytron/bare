@@ -1,4 +1,5 @@
 from pathlib import Path
+from notifypy import Notify
 
 import click
 
@@ -11,16 +12,21 @@ from src.backup_tools.backup_checker import (
 )
 from src.generator.generator import init_config
 
-BACKUP_NEVER_PERFORMED_MESSAGE = "You have never performed a backup. \
-    Please make one as soon as possible."
+notification = Notify(
+  default_notification_title="Backups status",
+  default_application_name="Backup Checker",
+)
+
+BACKUP_NEVER_PERFORMED_MESSAGE = "You have never performed a backup. " \
+    "Please make one as soon as possible."
 
 NO_BACKUP_NEEDED_MESSAGE = "No backup needed you're all good and safe."
 
-NO_CONFIG_MESSAGE = "No configuration file found. \
-    Please create one with the init command."
+NO_CONFIG_MESSAGE = "No configuration file found. " \
+    "Please create one with the init command."
 
-CONFIG_ERROR_MESSAGE = "An error occured during configuration loading. \
-    Please check and fix your configuration file."
+CONFIG_ERROR_MESSAGE = "An error occured during configuration loading. " \
+    "Please check and fix your configuration file."
 
 
 @click.group()
@@ -28,12 +34,12 @@ def cli():
     pass
 
 
-@cli.command(help="Initialize the backup checker configuration")
+@cli.command(help="Initialize the backup checker configuration.")
 @click.option(
     "--backup-interval",
     default=5,
     help="""Amount of days between backups. A notification will be sent after
-    this amount of days passed without any backup""",
+    this amount of days passed without any backup.""",
 )
 def init(backup_interval):
     click.echo("Generating configuration...")
@@ -41,7 +47,7 @@ def init(backup_interval):
     click.echo(f"Configuration generated in {config_file}")
 
 
-@cli.command(help="Check if a new backup is necessary")
+@cli.command(help="Check if a new backup is necessary.")
 def check():
     try:
         config = load_config(Path.home())
@@ -51,13 +57,23 @@ def check():
             age = compute_last_backup_age_in_days(config)
 
             if age is None:
-                click.echo(BACKUP_NEVER_PERFORMED_MESSAGE)
+                message = BACKUP_NEVER_PERFORMED_MESSAGE
+                click.echo(message)
+
+                notification.message = message
+                notification.title = "You need a new backup"
+                notification.send()
+
                 return
 
-            click.echo(
-                f"Your last backup was done {age} days ago. \
-                Please make a new one as soon as possible."
-            )
+            message = f"Your last backup was done {age} days ago. " \
+                "Please make a new one as soon as possible."
+            click.echo(message)
+
+            notification.message = message
+            notification.title = "You need a new backup"
+            notification.send()
+
             return
 
         click.echo(NO_BACKUP_NEEDED_MESSAGE)
