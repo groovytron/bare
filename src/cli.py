@@ -1,7 +1,7 @@
 from pathlib import Path
-from notifypy import Notify
 
 import click
+from notifypy import Notify
 
 from src.backup_tools.backup_checker import (
     IncorrectBackupConfig,
@@ -13,20 +13,27 @@ from src.backup_tools.backup_checker import (
 from src.generator.generator import init_config
 
 notification = Notify(
-  default_notification_title="Backups status",
-  default_application_name="Backup Checker",
+    default_notification_title="Backups status",
+    default_application_name="Backup Checker",
 )
 
-BACKUP_NEVER_PERFORMED_MESSAGE = "You have never performed a backup. " \
+BACKUP_NEVER_PERFORMED_MESSAGE = (
+    "You have never performed a backup. "
     "Please make one as soon as possible."
+)
 
 NO_BACKUP_NEEDED_MESSAGE = "No backup needed you're all good and safe."
 
-NO_CONFIG_MESSAGE = "No configuration file found. " \
-    "Please create one with the init command."
+NO_CONFIG_MESSAGE = (
+    "No configuration file found. " "Please create one with the init command."
+)
 
-CONFIG_ERROR_MESSAGE = "An error occured during configuration loading. " \
+CONFIG_ERROR_MESSAGE = (
+    "An error occured during configuration loading. "
     "Please check and fix your configuration file."
+)
+
+COMMIT_MESSAGE = "Your backup has been committed."
 
 
 @click.group()
@@ -66,8 +73,10 @@ def check():
 
                 return
 
-            message = f"Your last backup was done {age} days ago. " \
+            message = (
+                f"Your last backup was done {age} days ago. "
                 "Please make a new one as soon as possible."
+            )
             click.echo(message)
 
             notification.message = message
@@ -92,6 +101,7 @@ def commit():
 
         if new_backup_is_needed(config):
             commit_backup(Path.home())
+            click.echo(COMMIT_MESSAGE)
     except IncorrectBackupConfig:
         click.echo(CONFIG_ERROR_MESSAGE)
         exit(1)

@@ -9,7 +9,7 @@ from click.testing import CliRunner
 from freezegun import freeze_time
 
 from src.backup_tools.backup_checker import LAST_FILE, load_config
-from src.cli import cli
+from src.cli import COMMIT_MESSAGE, cli
 from tests.helpers import get_fixture_path
 
 mock_date = "2012-01-14 16:00:00"
@@ -117,6 +117,7 @@ class TestCliCommit(TestCase):
             result = runner.invoke(cli, ["commit"])
 
             self.assertEqual(result.exit_code, 0)
+            self.assertIn(COMMIT_MESSAGE, result.output)
 
             after_config = load_config(str(test_path))
 
@@ -147,6 +148,7 @@ class TestCliCommit(TestCase):
             result = runner.invoke(cli, ["commit"])
 
             self.assertEqual(result.exit_code, 0)
+            self.assertIn(COMMIT_MESSAGE, result.output)
 
             after_config = load_config(str(test_path))
 
@@ -177,6 +179,7 @@ class TestCliCommit(TestCase):
             result = runner.invoke(cli, ["commit"])
 
             self.assertEqual(result.exit_code, 0)
+            self.assertNotIn(COMMIT_MESSAGE, result.output)
 
             after_config = load_config(str(test_path))
 
