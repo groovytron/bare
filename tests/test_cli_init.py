@@ -1,18 +1,18 @@
 import os
 import tempfile
 from pathlib import Path
-from unittest import TestCase, mock
+from unittest import TestCase
 
 import yaml
 from click.testing import CliRunner
 
 from src.backup_tools.backup_checker import LAST_FILE
-from src.cli import init
+from src.cli import cli
 
 user_home = Path.home()
 
 
-class TestCliConfigInit(TestCase):
+class TestCliInit(TestCase):
     def test_init(self):
         with tempfile.TemporaryDirectory(delete=False) as test_path:
             os.environ["HOME"] = str(test_path)
@@ -24,7 +24,7 @@ class TestCliConfigInit(TestCase):
             )
 
             runner = CliRunner()
-            result = runner.invoke(init)
+            result = runner.invoke(cli, ["init"])
 
             self.assertEqual(result.exit_code, 0)
 
@@ -50,7 +50,7 @@ class TestCliConfigInit(TestCase):
 
             runner = CliRunner()
             result = runner.invoke(
-                init, [f"--backup-interval={backup_interval}"]
+                cli, ["init", f"--backup-interval={backup_interval}"]
             )
 
             self.assertEqual(result.exit_code, 0)

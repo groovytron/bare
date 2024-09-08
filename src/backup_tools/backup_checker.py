@@ -74,12 +74,21 @@ def config_file_exists(backup_file_path: str) -> bool:
     return file.is_file()
 
 
-def new_backup_is_needed(config) -> bool:
+def compute_last_backup_age_in_days(config) -> Optional[int]:
     if config.last_backup_date is None:
-        return True
+        return None
 
     now = datetime.datetime.now()
 
     difference = now - config.last_backup_date
 
-    return difference.days > config.backup_interval
+    return difference.days
+
+
+def new_backup_is_needed(config) -> bool:
+    if config.last_backup_date is None:
+        return True
+
+    age = compute_last_backup_age_in_days(config)
+
+    return age > config.backup_interval
