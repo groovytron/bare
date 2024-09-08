@@ -85,3 +85,19 @@ def new_backup_is_needed(config) -> bool:
     age = compute_last_backup_age_in_days(config)
 
     return age > config.backup_interval
+
+
+def commit_backup(config_folder_path: str):
+    old_config = load_config(config_folder_path)
+
+    config_file_path = Path(config_folder_path) / LAST_FILE
+
+    with open(config_file_path, "w") as config_file:
+        config = dict(
+            last_backup=datetime.datetime.now().timestamp(),
+            backup_interval=old_config.backup_interval,
+        )
+
+        yaml.dump(config, config_file)
+
+    return config_file_path

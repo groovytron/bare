@@ -4,6 +4,7 @@ import click
 
 from src.backup_tools.backup_checker import (
     IncorrectBackupConfig,
+    commit_backup,
     compute_last_backup_age_in_days,
     load_config,
     new_backup_is_needed,
@@ -60,6 +61,21 @@ def check():
             return
 
         click.echo(NO_BACKUP_NEEDED_MESSAGE)
+    except IncorrectBackupConfig:
+        click.echo(CONFIG_ERROR_MESSAGE)
+        exit(1)
+    except FileNotFoundError:
+        click.echo(NO_CONFIG_MESSAGE)
+        exit(1)
+
+
+@cli.command(help="Commit your backup.")
+def commit():
+    try:
+        config = load_config(Path.home())
+
+        if new_backup_is_needed(config):
+            commit_backup(Path.home())
     except IncorrectBackupConfig:
         click.echo(CONFIG_ERROR_MESSAGE)
         exit(1)
