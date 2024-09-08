@@ -25,7 +25,6 @@ class BackupConfig:
 
 def load_config(backup_file_path: str) -> BackupConfig:
     file = Path(f"{backup_file_path}/{LAST_FILE}")
-
     with open(file, "r") as config_file:
         try:
             config = yaml.safe_load(config_file)
