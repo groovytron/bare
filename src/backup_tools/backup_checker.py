@@ -60,11 +60,10 @@ def load_config(backup_file_path: str) -> BackupConfig:
             return BackupConfig(last_backup_date, backup_interval)
 
         except yaml.YAMLError:
-            print(
+            raise IncorrectBackupConfig(
                 "Incorrect or corrupted file."
                 f"Please check the content of {backup_file_path}"
             )
-            raise IncorrectBackupConfig()
 
 
 def compute_last_backup_age_in_days(config) -> Optional[int]:
