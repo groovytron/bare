@@ -1,34 +1,17 @@
 import unittest
+from datetime import datetime
 
 from helpers import get_fixture_path
 
-from src.backup_tools.backup_checker import (
-    IncorrectBackupConfig,
-    config_file_exists,
-    load_config,
-)
+from src.backup_tools.backup_checker import IncorrectBackupConfig, load_config
 
 
 class TestLoadConfig(unittest.TestCase):
-    def test_no_last_backup(self):
+    def test_no_config(self):
         test_path = get_fixture_path("no-backup")
 
-        self.assertFalse(config_file_exists(str(test_path)))
-
-    def test_empty_last_backup(self):
-        test_path = get_fixture_path("empty-last-backup")
-
-        self.assertTrue(config_file_exists(str(test_path)))
-
-    def test_last_backup_in_past(self):
-        test_path = get_fixture_path("last-backup-in-past")
-
-        self.assertTrue(config_file_exists(str(test_path)))
-
-    def test_last_backup_in_future(self):
-        test_path = get_fixture_path("last-backup-in-future")
-
-        self.assertTrue(config_file_exists(str(test_path)))
+        with self.assertRaises(FileNotFoundError):
+            load_config(test_path)
 
     def test_empty_config(self):
         test_path = get_fixture_path("empty-last-backup")

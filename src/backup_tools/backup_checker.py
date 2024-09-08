@@ -68,12 +68,6 @@ def load_config(backup_file_path: str) -> BackupConfig:
             raise IncorrectBackupConfig()
 
 
-def config_file_exists(backup_file_path: str) -> bool:
-    file = Path(f"{backup_file_path}/{LAST_FILE}")
-
-    return file.is_file()
-
-
 def compute_last_backup_age_in_days(config) -> Optional[int]:
     if config.last_backup_date is None:
         return None
