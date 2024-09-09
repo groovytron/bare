@@ -11,3 +11,7 @@ lint:
 format:
 	@poetry run isort . && \
 	poetry run black .
+
+.PHONY:publish
+publish:
+	poetry publish --build
