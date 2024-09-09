@@ -5,6 +5,8 @@ description = ""
 authors = ["Julien M'Poy"]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/groovytron/bare"
+documentation = "https://github.com/groovytron/bare/blob/main/README.md"
 
 [tool.poetry.scripts]
 bare = "backup_reminder.cli:cli"
