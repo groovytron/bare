@@ -17,7 +17,7 @@ notification = Notify(
     default_notification_title="Backups status",
     default_application_name="Backup Checker",
     default_notification_icon=str(
-        Path(__file__).parent.resolve() / "../logo.svg"
+        Path(__file__).parent.resolve() / "assets/logo.svg"
     ),
 )
 
