@@ -8,6 +8,20 @@ A simple CLI tool that can be used as a backup reminder for your laptop backups.
 can be used to check the last time a backup was done and remind you if
 a new backup is needed.**
 
+You can use one of the following tools to perform backups for instance:
+
+- [Back In Time](https://github.com/bit-team/backintime) (for your HOME folder for instance)
+- [Timeshift](https://github.com/linuxmint/timeshift) (for system backups)
+- [Restic](https://restic.net/) (combined with [Autorestic](https://autorestic.vercel.app/))
+
+## Installation
+
+### With pipx
+
+```bash
+pipx install backup-reminder
+```
+
 ## Usage
 
 ### Initialization
@@ -24,6 +38,11 @@ in the configuration file following your needs. By default the value is 5
 ### Check if a backup is needed
 
 Simply run `bare check` to know if a new backup is needed.
+A system notification is displayed if a new backup is needed.
 
 If a backup is needed, perform your backup and then run `bare commit` to
 commit your backup.
+
+You can for instance make your session manager run `bare check` after login.
+By doing it this way, a check is performed on every login and you get notified
+if a new backup is needed.
