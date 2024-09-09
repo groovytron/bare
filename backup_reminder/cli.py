@@ -1,3 +1,4 @@
+import tomllib
 from pathlib import Path
 
 import click
@@ -108,6 +109,15 @@ def commit():
     except FileNotFoundError:
         click.echo(NO_CONFIG_MESSAGE)
         exit(1)
+
+
+@cli.command(help="Show bare CLI current version")
+def version():
+    with open(
+        (Path(__file__).parent.resolve() / "../pyproject.toml"), "rb"
+    ) as f:
+        data = tomllib.load(f)
+        click.echo(f"bare version {data["tool"]["poetry"]["version"]}")
 
 
 if __name__ == "__main__":
