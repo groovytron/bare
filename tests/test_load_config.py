@@ -3,7 +3,7 @@ from datetime import datetime
 
 from helpers import get_fixture_path
 
-from src.backup_tools.backup_checker import IncorrectBackupConfig, load_config
+from backup_reminder.checker import IncorrectBackupConfig, load_config
 
 
 class TestLoadConfig(unittest.TestCase):

@@ -6,8 +6,8 @@ from unittest import TestCase
 import yaml
 from click.testing import CliRunner
 
-from src.backup_tools.backup_checker import LAST_FILE
-from src.cli import cli
+from backup_reminder.checker import LAST_FILE
+from backup_reminder.cli import cli
 
 user_home = Path.home()
 

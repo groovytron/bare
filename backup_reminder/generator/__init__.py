@@ -2,7 +2,7 @@ from pathlib import Path
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-from src.backup_tools.backup_checker import LAST_FILE
+from backup_reminder.checker import LAST_FILE
 
 
 def init_config(config_folder_path: str, backup_interval: int = 5) -> Path:
@@ -10,7 +10,7 @@ def init_config(config_folder_path: str, backup_interval: int = 5) -> Path:
 
     with open(config_file_path, "w") as config_file:
         env = Environment(
-            loader=PackageLoader("src.generator"),
+            loader=PackageLoader("backup_reminder.generator"),
             autoescape=select_autoescape(),
             keep_trailing_newline=True,
         )

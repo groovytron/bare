@@ -3,14 +3,14 @@ from pathlib import Path
 import click
 from notifypy import Notify
 
-from src.backup_tools.backup_checker import (
+from backup_reminder.checker import (
     IncorrectBackupConfig,
     commit_backup,
     compute_last_backup_age_in_days,
     load_config,
     new_backup_is_needed,
 )
-from src.generator.generator import init_config
+from backup_reminder.generator import init_config
 
 notification = Notify(
     default_notification_title="Backups status",

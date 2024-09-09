@@ -8,8 +8,8 @@ from unittest import TestCase
 from click.testing import CliRunner
 from freezegun import freeze_time
 
-from src.backup_tools.backup_checker import LAST_FILE, load_config
-from src.cli import COMMIT_MESSAGE, cli
+from backup_reminder.checker import LAST_FILE, load_config
+from backup_reminder.cli import COMMIT_MESSAGE, cli
 from tests.helpers import get_fixture_path
 
 mock_date = "2012-01-14 16:00:00"

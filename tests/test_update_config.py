@@ -6,11 +6,7 @@ from unittest import TestCase
 
 from freezegun import freeze_time
 
-from src.backup_tools.backup_checker import (
-    LAST_FILE,
-    commit_backup,
-    load_config,
-)
+from backup_reminder.checker import LAST_FILE, commit_backup, load_config
 from tests.helpers import get_fixture_path
 
 mock_date = "2012-01-14 16:00:00"

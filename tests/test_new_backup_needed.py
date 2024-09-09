@@ -2,7 +2,7 @@ import unittest
 
 from helpers import get_fixture_path
 
-from src.backup_tools.backup_checker import load_config, new_backup_is_needed
+from backup_reminder.checker import load_config, new_backup_is_needed
 
 
 class TestNewBackupNeeded(unittest.TestCase):

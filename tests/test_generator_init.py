@@ -4,8 +4,8 @@ from pathlib import Path
 
 from helpers import get_fixture_path
 
-from src.backup_tools.backup_checker import LAST_FILE
-from src.generator.generator import init_config
+from backup_reminder.checker import LAST_FILE
+from backup_reminder.generator import init_config
 
 
 class TestGeneratorConfigInit(unittest.TestCase):

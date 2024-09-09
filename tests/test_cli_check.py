@@ -4,7 +4,7 @@ from unittest import TestCase
 
 from click.testing import CliRunner
 
-from src.cli import (
+from backup_reminder.cli import (
     BACKUP_NEVER_PERFORMED_MESSAGE,
     CONFIG_ERROR_MESSAGE,
     NO_BACKUP_NEEDED_MESSAGE,
