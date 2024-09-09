@@ -1,5 +1,7 @@
 # Bare (Backup Reminder)
 
+![GitHub Actions Status](https://github.com/groovytron/bare/actions/workflows/ci.yaml/badge.svg?branch=main)
+
 A simple CLI tool that can be used as a backup reminder for your laptop backups.
 
 **This CLI does not perform any backup for you. It is just a CLI that
