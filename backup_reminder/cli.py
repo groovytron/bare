@@ -16,6 +16,9 @@ from backup_reminder.generator import init_config
 notification = Notify(
     default_notification_title="Backups status",
     default_application_name="Backup Checker",
+    default_notification_icon=str(
+        Path(__file__).parent.resolve() / "../logo.svg"
+    ),
 )
 
 BACKUP_NEVER_PERFORMED_MESSAGE = (

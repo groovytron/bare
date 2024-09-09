@@ -1,4 +1,4 @@
-# Bare (Backup Reminder)
+# Bare (Backup Reminder) 🐻
 
 ![GitHub Actions Status](https://github.com/groovytron/bare/actions/workflows/ci.yaml/badge.svg?branch=main)
 
@@ -46,3 +46,9 @@ commit your backup.
 You can for instance make your session manager run `bare check` after login.
 By doing it this way, a check is performed on every login and you get notified
 if a new backup is needed.
+
+## Attribution
+
+The logo is the result of the transformation of the following original image
+designed by: Christie L. Ward, CC BY-SA 3.0
+<https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
