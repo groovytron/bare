@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "backup_reminder"
+name = "backup-reminder"
 version = "0.0.1"
 description = ""
 authors = ["Julien M'Poy"]
