@@ -43,9 +43,32 @@ A system notification is displayed if a new backup is needed.
 If a backup is needed, perform your backup and then run `bare commit` to
 commit your backup.
 
+### Perform check on login
+
 You can for instance make your session manager run `bare check` after login.
 By doing it this way, a check is performed on every login and you get notified
 if a new backup is needed.
+
+#### XFCE and GNOME
+
+Simply create a file in the path `~/.config/autostart/Backup Reminder.desktop` with the following content:
+
+```config
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=Backup Reminder
+Comment=Checks if a backup is needed
+Exec=<path-to-the-bare-binary> check
+OnlyShowIn=XFCE;
+RunHook=0
+StartupNotify=false
+Terminal=false
+Hidden=false
+```
+
+**Update `<path-to-the-bare-binary>` following your configuration.**
 
 ## Attribution
 
