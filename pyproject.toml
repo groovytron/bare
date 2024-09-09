@@ -1,10 +1,13 @@
 [tool.poetry]
-name = "linux-backup-tools"
+name = "backup_reminder"
 version = "0.0.1"
 description = ""
 authors = ["Julien M'Poy"]
 license = "MIT"
 readme = "README.md"
+
+[tool.poetry.scripts]
+bare = "backup_reminder.cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.12"
