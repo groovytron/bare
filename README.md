@@ -49,7 +49,7 @@ You can for instance make your session manager run `bare check` after login.
 By doing it this way, a check is performed on every login and you get notified
 if a new backup is needed.
 
-#### XFCE and GNOME
+#### XFCE, GNOME and KDE
 
 Simply create a file in the path `~/.config/autostart/Backup Reminder.desktop` with the following content:
 
@@ -61,7 +61,7 @@ Type=Application
 Name=Backup Reminder
 Comment=Checks if a backup is needed
 Exec=<path-to-the-bare-binary> check
-OnlyShowIn=XFCE;
+OnlyShowIn=XFCE;GNOME;KDE;
 RunHook=0
 StartupNotify=false
 Terminal=false
