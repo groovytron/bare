@@ -12,7 +12,7 @@ from backup_reminder.checker import (
 )
 from backup_reminder.generator import init_config
 
-cli_version = "0.0.3"
+cli_version = "0.0.4"
 
 notification = Notify(
     default_notification_title="Backups status",
