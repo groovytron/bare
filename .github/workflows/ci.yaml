@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 env:
-  PYTHON_VERSION: '3.12'
+  PYTHON_VERSION: 3.12
   POETRY_VERSION: latest
   VIRTUALENVS_CREATE: true
   VIRTUALENVS_IN_PROJECT: true
@@ -17,14 +17,14 @@ jobs:
         uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: $PYTHON_VERSION
+          python-version: ${{ env.PYTHON_VERSION }}
       - name: Install and configure Poetry
         uses: snok/install-poetry@v1
         with:
-          version: $POETRY_VERSION
-          virtualenvs-create: $VIRTUALENVS_CREATE
-          virtualenvs-in-project: $VIRTUALENVS_IN_PROJECT
-          installer-parallel: $INSTALLER_PARALLEL
+          version: ${{ env.POETRY_VERSION }}
+          virtualenvs-create: ${{ env.VIRTUALENVS_CREATE }}
+          virtualenvs-in-project: ${{env.VIRTUALENVS_IN_PROJECT }}
+          installer-parallel: ${{ env.INSTALLER_PARALLEL }}
       - name: Install dependencies
         run: poetry install
       - name: Lint code
