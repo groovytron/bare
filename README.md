@@ -51,7 +51,7 @@ if a new backup is needed.
 
 #### XFCE, GNOME and KDE
 
-Simply create a file in the path `~/.config/autostart/Backup Reminder.desktop` with the following content:
+Simply create a file in the path `~/.config/autostart/backup-reminder.desktop` with the following content:
 
 ```config
 [Desktop Entry]
