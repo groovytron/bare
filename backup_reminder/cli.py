@@ -1,4 +1,3 @@
-import tomllib
 from pathlib import Path
 
 import click
@@ -12,6 +11,8 @@ from backup_reminder.checker import (
     new_backup_is_needed,
 )
 from backup_reminder.generator import init_config
+
+cli_version = "0.0.3"
 
 notification = Notify(
     default_notification_title="Backups status",
@@ -116,11 +117,7 @@ def commit():
 
 @cli.command(help="Show bare CLI current version")
 def version():
-    with open(
-        (Path(__file__).parent.resolve() / "../pyproject.toml"), "rb"
-    ) as f:
-        data = tomllib.load(f)
-        click.echo(f"bare version {data["tool"]["poetry"]["version"]}")
+    click.echo(f"bare version {cli_version}")
 
 
 if __name__ == "__main__":

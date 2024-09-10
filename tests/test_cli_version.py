@@ -1,4 +1,4 @@
-import re
+import tomllib
 from unittest import TestCase
 
 from click.testing import CliRunner
@@ -12,6 +12,11 @@ class TestCliVersion(TestCase):
         result = runner.invoke(cli, ["version"])
 
         self.assertEqual(result.exit_code, 0)
-        self.assertIsNotNone(
-            re.match(r"bare version \d+.\d+.\d+", result.output)
-        )
+
+        with open("pyproject.toml", "rb") as project_file:
+            config = tomllib.load(project_file)
+            self.assertIn(
+                f"bare version {config["tool"]["poetry"]["version"]}",
+                result.output,
+                "cli version should match pyproject.toml's version",
+            )
