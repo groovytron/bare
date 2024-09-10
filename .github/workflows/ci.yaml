@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 env:
-  PYTHON_VERSION: 3.12
+  PYTHON_VERSION: '3.12'
   POETRY_VERSION: latest
   VIRTUALENVS_CREATE: true
   VIRTUALENVS_IN_PROJECT: true
