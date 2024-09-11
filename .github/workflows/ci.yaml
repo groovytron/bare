@@ -35,26 +35,13 @@ jobs:
     needs: test
     if: ${{ github.ref_type == 'tag' }}
     runs-on: ubuntu-latest
-    env:
-      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-      - name: Install and configure Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: latest
-          virtualenvs-create: ${{ env.VIRTUALENVS_CREATE }}
-          virtualenvs-in-project: ${{env.VIRTUALENVS_IN_PROJECT }}
-          installer-parallel: ${{ env.INSTALLER_PARALLEL }}
-      - name: Install dependencies
-        run: poetry install
       - name: Check version matches tag
         run: grep "version = \"$GITHUB_REF_NAME\"" pyproject.toml || (echo 'Version number does not match tag' && exit 1)
-      - name: Setup token for Pypi
-        run: poetry config $PYPI_TOKEN
-      - name: Publish to PyPi
-        run: make publish
+      - name: Build and publish to pypi
+        uses: JRubics/poetry-publish@v2.0
+        with:
+          python_version: ${{ env.PYTHON_VERSION }}
+          pypi_token: ${{ secrets.PYPI_TOKEN }}
