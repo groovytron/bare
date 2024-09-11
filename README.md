@@ -70,6 +70,19 @@ Hidden=false
 
 **Update `<path-to-the-bare-cli>` following your configuration.**
 
+## Contributing
+
+Run the following commands to install the dependencies:
+
+```bash
+npm install && poetry install
+```
+
+Tests can be run with `make test` and codebase can be formatted by
+running `make format`.
+
+Have look at the [`Makefile`](./Makefile) for details.
+
 ## Attribution
 
 The logo is the result of the transformation of the following original image
