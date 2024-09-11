@@ -35,6 +35,8 @@ jobs:
     needs: test
     if: ${{ github.ref_type == 'tag' }}
     runs-on: ubuntu-latest
+    env:
+      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
