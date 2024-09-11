@@ -52,5 +52,7 @@ jobs:
         run: poetry install
       - name: Check version matches tag
         run: grep "version = \"$GITHUB_REF_NAME\"" pyproject.toml || (echo 'Version number does not match tag' && exit 1)
+      - name: Setup token for Pypi
+        run: poetry config $PYPI_TOKEN
       - name: Publish to PyPi
-        run: echo "Release version $GITHUB_REF_NAME"
+        run: make publish
