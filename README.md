@@ -1,6 +1,7 @@
 # Bare (Backup Reminder) 🐻
 
 ![GitHub Actions Status](https://github.com/groovytron/bare/actions/workflows/ci.yaml/badge.svg?branch=main)
+![PyPI - Version](https://img.shields.io/pypi/v/backup-reminder)
 
 A simple CLI tool that can be used as a backup reminder for your laptop backups.
 
