@@ -60,7 +60,7 @@ Version=0.9.4
 Type=Application
 Name=Backup Reminder
 Comment=Checks if a backup is needed
-Exec=<path-to-the-bare-binary> check
+Exec=<path-to-the-bare-cli> check
 OnlyShowIn=XFCE;GNOME;KDE;
 RunHook=0
 StartupNotify=false
@@ -68,7 +68,7 @@ Terminal=false
 Hidden=false
 ```
 
-**Update `<path-to-the-bare-binary>` following your configuration.**
+**Update `<path-to-the-bare-cli>` following your configuration.**
 
 ## Attribution
 
