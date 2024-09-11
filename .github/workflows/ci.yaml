@@ -22,7 +22,7 @@ jobs:
         with:
           version: latest
           virtualenvs-create: ${{ env.VIRTUALENVS_CREATE }}
-          virtualenvs-in-project: ${{env.VIRTUALENVS_IN_PROJECT }}
+          virtualenvs-in-project: ${{ env.VIRTUALENVS_IN_PROJECT }}
           installer-parallel: ${{ env.INSTALLER_PARALLEL }}
       - name: Install dependencies
         run: poetry install
